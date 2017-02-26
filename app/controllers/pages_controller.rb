@@ -5,4 +5,7 @@ class PagesController < ApplicationController
   def map
     puts "pages#map is getting called, whee"
   end
+
+  def maptest
+  end
 end

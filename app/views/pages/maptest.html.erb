@@ -1,0 +1,345 @@
+<!DOCTYPE html >
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <style>
+
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+      html, body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      .ui.menu:first-child {
+        height: 60px;
+        /*margin-top: 12px;*/
+      }
+
+      .ui.menu:second-child {
+        height: 60px;
+        margin-top: 12px;
+        overflow: hidden;
+      }
+
+      .column {
+        height: 100vh;
+        overflow-y: scroll;
+      }
+      .pac-card {
+       margin: 10px 10px 0 0;
+       border-radius: 2px 0 0 2px;
+       box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       outline: none;
+       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+       background-color: #fff;
+       font-family: Roboto;
+     }
+
+     #pac-container {
+       padding-bottom: 12px;
+       margin-right: 12px;
+     }
+
+     .pac-controls {
+       display: inline-block;
+       padding: 5px 11px;
+     }
+
+     .pac-controls label {
+       font-family: Roboto;
+       font-size: 13px;
+       font-weight: 300;
+     }
+
+     #pac-input {
+       background-color: #fff;
+       font-family: Roboto;
+       font-size: 15px;
+       font-weight: 300;
+       margin-left: 12px;
+       margin-top: 10px;
+       padding: 0 11px 0 13px;
+       text-overflow: ellipsis;
+       width: 400px;
+       height: 30px;
+     }
+
+     #pac-input:focus {
+       border-color: #4d90fe;
+     }
+     #title {
+       color: #fff;
+       background-color: #4d90fe;
+       font-size: 25px;
+       font-weight: 500;
+       padding: 6px 12px;
+     }
+     #target {
+       width: 345px;
+     }
+    </style>
+  </head>
+  <body>
+
+    <div class="ui two column grid">
+      <div class="column">
+        <!-- <div class="ui sticky"> -->
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map" height="460px" width="100%"></div>
+    <div id="form">
+      <table>
+      <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
+      <tr><td>Type:</td> <td><select id='type'> +
+                 <option value='Fruit' SELECTED>Fruit</option>
+                 <option value='Vegetable'>Vegetable</option>
+                 <option value='Other'>Other</option>
+                 </select> </td></tr>
+                 <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
+      </table>
+    </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAna4GD5g2aOa5JUubrG1HHulRl8LSf7eg&callback=initMap&libraries=places">
+    </script>
+  </div>
+  <!-- </div> -->
+    <!-- <div id="message">Location saved</div> -->
+
+
+
+
+<div class='column'>
+  <div class="ui menu">
+    <div class="item">
+      <div class="ui buttons">
+        <button class="ui olive ui button">Fruit</button>
+        <div class="or"></div>
+        <button class="ui olive ui button">Vegetable</button>
+      </div>
+    </div>
+    <div class="right item">
+      <div class="ui floating dropdown labeled icon button">
+        <i class="filter icon"></i>
+        <span class="text">Filter Food</span>
+        <div class="menu">
+          <div class="ui icon search input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Search tags...">
+          </div>
+          <div class="divider"></div>
+          <div class="header">
+            <i class="tags icon"></i>
+            Available Options
+          </div>
+          <div class="scrolling menu">
+            <div class="item">
+              <div class="ui red empty circular label"></div>
+              Tomato
+            </div>
+            <div class="item">
+              <div class="ui blue empty circular label"></div>
+              Lettuce
+            </div>
+            <div class="item">
+              <div class="ui purple empty circular label"></div>
+              Grape
+            </div>
+            <div class="item">
+              <div class="ui orange empty circular label"></div>
+            Carrot
+            </div>
+            <div class="item">
+              <div class="ui yellow empty circular label"></div>
+              Lemon
+            </div>
+            <div class="item">
+              <div class="ui pink empty circular label"></div>
+            Strawberry
+            </div>
+            <div class="item">
+              <div class="ui green empty circular label"></div>
+              Apple
+            </div>
+            <div class="item">
+              <div class="ui empty circular label"></div>
+              All
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+        <div class="ui link cards">
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/carrot.png?14706481068821637579">
+        </div>
+        <div class="content">
+          <div class="header">Carrots</div>
+          <div class="meta">
+            <a>198 41st, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Vegetable
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/grape.png?15928860166532810551">
+        </div>
+        <div class="content">
+          <div class="header">Grapes</div>
+          <div class="meta">
+            <a>6th & Gore, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/cherry.png?15324602097155618717">
+        </div>
+        <div class="content">
+          <div class="header">Cherries</div>
+          <div class="meta">
+            <a>East 5th & Victoria, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
+        </div>
+        <div class="content">
+          <div class="header">Lettuce</div>
+          <div class="meta">
+            <a>2949 Prince Edward, Vancouver</a>
+          </div>
+          <div class="description">
+            description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Vegetable
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/berry.png?10987933923783252097">
+        </div>
+        <div class="content">
+          <div class="header">Strawberry</div>
+          <div class="meta">
+            <span class="date">Victoria Park, East Van</span>
+          </div>
+          <div class="description">
+            description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            35 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lemon.png?8813038794088928612">
+        </div>
+        <div class="content">
+          <div class="header">Lemon</div>
+          <div class="meta">
+            <a>54 clifford street, Vancouver</a>
+          </div>
+          <div class="description">
+description description fruit and vegetables foraging description           </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/Untitled-2.png?14227909331024637198">
+        </div>
+        <div class="content">
+          <div class="header">Apple</div>
+          <div class="meta">
+            <a>161 West Georgia, Vancouver</a>
+          </div>
+          <div class="description">
+description description fruit and vegetables foraging description            </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            151 Friends
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <%= javascript_include_tag "maps" %>
+
+  </body>
+</html>

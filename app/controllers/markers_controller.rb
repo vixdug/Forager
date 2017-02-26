@@ -11,17 +11,15 @@ class MarkersController < ApplicationController
 
     @marker = Marker.new(marker_params)
     if @marker.save
-      flash[:success] = "Saved"
       render :json => @marker
     else
-      flash[:danger] = "no"
       render :json => {yo: 'mamma'}
     end
   end
 
 private
 def marker_params
-  params.require(:marker).permit(:name, :address, :latitude, :longitude, :type)
+  params.require(:marker).permit(:name, :address, :latitude, :longitude, :category)
 end
 
 

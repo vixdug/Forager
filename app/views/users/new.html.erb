@@ -1,0 +1,44 @@
+<div class="ui three column centered grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+        Signup
+      </div>
+    </h2>
+      <%= form_tag users_path, class:'ui large form' do %>
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <%= text_field_tag 'user[name]', nil, placeholder: 'Name' %>
+            </div>
+            </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="at icon"></i>
+              <%= text_field_tag 'user[email]', nil, placeholder: 'E-mail address' %>
+            </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+              <%= password_field_tag 'user[password]', nil , placeholder: 'Password' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+            <%= password_field_tag 'user[password_confirmation]', nil , placeholder: 'Confirm Password' %>
+          </div>
+        </div>
+        <%= submit_tag "Submit", class:'ui fluid large submit button' %>
+        </div>
+        <div class='ui error message'></div>
+      <% end %>
+
+    <div class="ui message">
+      Alread have an account? <%= link_to 'Login here', login_path, class:'login-footer' %></a>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'users' %>
