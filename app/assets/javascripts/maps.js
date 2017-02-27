@@ -6,12 +6,22 @@ $('.ui.sticky')
 
 $('.ui.dropdown').dropdown({
   onChange: function (val) {
-    // getSelectedTextValue()
-       console.log(val);
-       debugger
-   }
- });
+    $('.card').show()
+    console.log(val);
+    if (val == "All") {
+      $('.card').show()
+    } else {
+    filterByType(val)
+    }
+    }})
 
+    // getSelectedTextValue()
+function filterByType(val) {
+    $('.header').filter(function(){
+      console.log("result", val);
+      return $(this).text() !== val;
+    }).closest('.card').hide();
+  }
 
 
  // function getSelectedTextValue() {
