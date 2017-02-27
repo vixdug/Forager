@@ -32,3 +32,14 @@
  .UpdatedText {
    color: red;
  }
+
+ .white-text {
+   margin: auto;
+font-size: medium;
+font-color: white;
+color: olivedrab;
+}
+
+.ui.grid>.column+.divider, .ui.grid>.row>.column+.divider {
+    left: 50%;
+}

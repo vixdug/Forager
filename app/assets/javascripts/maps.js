@@ -4,9 +4,65 @@ $('.ui.sticky')
   })
 ;
 
-$('.ui.dropdown')
-  .dropdown()
-;
+$('.ui.dropdown').dropdown({
+  onChange: function (val) {
+    // getSelectedTextValue()
+       console.log(val);
+       debugger
+   }
+ });
+
+
+
+ // function getSelectedTextValue() {
+ //   console.log(($('.ui.dropdown').dropdown('get value') ))
+ // }
+
+$('.fruit').state({
+  onChange: function() {
+    $('.card').show()
+    console.log("fruit");
+    $('.card').filter('#veg')
+    .hide()
+    .end()
+  }})
+
+  $('.veg').state({
+    onChange: function() {
+      $('.card').show()
+      console.log("veg");
+      $('.card').filter('#fruit')
+      .hide()
+      .end()
+    }})
+
+    $('.button.all').state({
+      onChange: function() {
+        $('.card').show()
+        console.log("all");
+
+      }})
+
+
+
+
+
+  // .api({
+  //   action: 'Fruit'
+  // })
+  // .state({
+  //   onActivate: function() {
+  //     $(this).state('flash text');
+  //   },
+  //   text: {
+  //     inactive   : "Pick",
+  //     active     : 'Followed',
+  //     deactivate : 'Unfollow',
+  //     flash      : 'Added follower!'
+  //   }
+  // });
+
+
 
   var map;
   var marker;

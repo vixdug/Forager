@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require semantic-ui
 //= require_tree .
+
+$.fn.api.settings.api = {
+  'get followers' : '/followers/{id}?results={count}',
+  'Fruit'         : '/fruit',
+  'add user'      : '/add/{id}',
+  'follow user'   : '/follow/{id}',
+  'search'        : '/search/?query={value}'
+};

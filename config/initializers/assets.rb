@@ -12,3 +12,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( maps.js )
 Rails.application.config.assets.precompile += %w( sessions.js )
 Rails.application.config.assets.precompile += %w( users.js )
+Rails.application.config.assets.precompile += %w( util.js )
+Rails.application.config.assets.precompile += %w( skel.min.js )
+Rails.application.config.assets.precompile += %w( home.js )
+Rails.application.config.assets.precompile += %w( home.css )

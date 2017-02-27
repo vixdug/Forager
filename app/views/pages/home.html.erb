@@ -1,134 +1,229 @@
-<!-- <!DOCTYPE html>
+
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Marker Clustering</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-    var map;
+	<head>
+		<title>Dimension by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- <link rel="stylesheet" href="assets/stylesheets/home.css" /> -->
+    <%= stylesheet_link_tag "home" %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
 
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: {lat: 49.2827, lng: -123.1207}
-        });
+	</head>
+	<body>
 
-        var infoWindow = new google.maps.InfoWindow({map: map});
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-        // Create a <script> tag and set the USGS URL as the source.
-       var script = document.createElement('script');
-       // This example uses a local copy of the GeoJSON stored at
-       // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-       script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-       document.getElementsByTagName('head')[0].appendChild(script);
+				<!-- Header -->
+					<header id="header">
+						<div class="logo">
+              <i class="tree icon"></i>
+						</div>
+						<div class="content">
+							<div class="inner">
+								<h1>Forager</h1>
+								<p><!--[-->Community driven food foraging network targeting food insecurity in and around Vancouver. <!--]--><br />
+								<!--[-->.Wander and feed.<!--]--></p>
+							</div>
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#work">Sign Up</a></li>
+                <li><a href="#intro">What's in Season</a></li>
+								<li><a href="/maptest">Find Food</a></li>
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
 
-       // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+				<!-- Main -->
+					<div id="main">
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-     }
+						<!-- Intro -->
+							<article id="intro">
+								<h2 class="major">Intro</h2>
+								<span class="image main"><img src="" alt="" /></span>
+								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
+							</article>
 
-     // Loop through the results array and place a marker for each
-     // set of coordinates.
-     window.eqfeed_callback = function(results) {
-       for (var i = 0; i < results.features.length; i++) {
-         var labels = 'TF';
-         var coords = results.features[i].geometry.coordinates;
-         var latLng = new google.maps.LatLng(coords[1],coords[0]);
-         var markers = new google.maps.Marker({
-           position: latLng,
-           map: map,
-           label: labels[i % labels.length]
-         });
-       }
-     }
+						<!-- Work -->
+							<article id="work">
+								<h2 class="major">Work</h2>
+								<span class="image main"><img src="" alt="" /></span>
+								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
+								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+							</article>
 
-      //   // Create an array of alphabetical characters used to label the markers.
-      //   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      //
-      //   // Add some markers to the map.
-      //   // Note: The code uses the JavaScript Array.prototype.map() method to
-      //   // create an array of markers based on a given "locations" array.
-      //   // The map() method here has nothing to do with the Google Maps API.
-      //   var markers = locations.map(function(location, i) {
-      //     return new google.maps.Marker({
-      //       position: location,
-      //       label: labels[i % labels.length]
-      //     });
-      //   });
-      //
-      //   // Add a marker clusterer to manage the markers.
-      //   var markerCluster = new MarkerClusterer(map, markers,
-      //       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      // }
-      // var locations = [
-      //   {lat: 49.2827, lng: -124.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -124.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1207},
-      //   {lat: 49.2827, lng: -123.1202}
-      // ]
+						<!-- About -->
+							<article id="about">
+								<h2 class="major">About</h2>
+								<span class="image main"><img src="" alt="" /></span>
+								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+							</article>
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-       infoWindow.setPosition(pos);
-       infoWindow.setContent(browserHasGeolocation ?
-                             'Error: The Geolocation service failed.' :
-                             'Error: Your browser doesn\'t support geolocation.');
-     }
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">Contact</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field half">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="4"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="special" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</form>
+								<ul class="icons">
+									<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</article>
 
-    </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAna4GD5g2aOa5JUubrG1HHulRl8LSf7eg&callback=initMap">
-    </script>
-  </body>
-</html> -->
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions vertical">
+										<li><a href="#" class="button special">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button special">Special</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button special icon fa-download">Icon</a></li>
+										<li><a href="#" class="button icon fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button special disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<!-- <script src="assets/js/jquery.min.js"></script> -->
+			<!-- <script src="assets/javascripts/skel.min.js"></script> -->
+      <%= javascript_include_tag "skel.min" %>
+			<!-- <script src="assets/javascripts/util.js"></script> -->
+      <%= javascript_include_tag "util" %>
+
+			<!-- <script src="assets/javascripts/home.js"></script> -->
+      <%= javascript_include_tag "home" %>
+
+
+	</body>
+</html>
