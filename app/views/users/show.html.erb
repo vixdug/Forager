@@ -1,0 +1,22 @@
+<div class="ui grid">
+      <div class="row">
+          <div class="column padding-reset">
+              <div class="ui huge message page grid">
+                  <h1 class="ui huge header">  Welcome, <%= current_user.name %>!</h1>
+                  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                  <a class="ui blue button">Learn more &raquo;</a>
+              </div>
+          </div>
+      </div>
+  </div
+
+        </h1>
+        <img class="ui small circular image" src="http://semantic-ui.com/images/avatar2/large/kristy.png">
+        <%= link_to 'Upload a photo', user_path %>
+        <div>
+          <%= current_user.email %>
+        </div>
+          Member since: <%= current_user.created_at.strftime("%d %b. %Y") %>
+        </div>
+      </div>
+  </div>

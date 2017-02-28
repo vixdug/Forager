@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def authenticate
     redirect_to login_path unless current_user
   end
+
+  private
+
+
 end

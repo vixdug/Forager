@@ -1,191 +1,347 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<title> forager </title>
-<meta charset="utf-8">
-<style>
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-#map {
-	width: 60%;
-	height: 100%;
-}
-.controls {
-	margin-top: 10px;
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-#searchInput {
-	background-color: #fff;
-	font-family: Roboto;
-	font-size: 15px;
-	font-weight: 300;
-	margin-left: 12px;
-	padding: 0 11px 0 13px;
-	text-overflow: ellipsis;
-	width: 50%;
-}
-#searchInput:focus {
- 	border-color: #4d90fe;
-}
+<!DOCTYPE html >
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
-</style>
-</head>
-<body>
-  <div id="map" height="460px" width="100%"></div>
-   <div id="form">
-     <table>
-     <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
-     <tr><td>Type:</td>
-			 					<td><select id='type'> +
-                <option value='Fruit' SELECTED>fruit</option>
-                <option value='vegetable'>Vegetable</option>
-                </select> </td></tr>
-                <tr><td></td><td><input type='button' value='Save' onclick='saveMarker(lat, lon)'/></td></tr>
-     </table>
-   </div>
-  <!-- this is the form that pops up on click -->
-   <div id="message">Location saved</div>
-<input id="searchInput" class="controls" type="text" placeholder="Enter a location">
-<ul id="geoData">
-    <li>Full Address: <span id="location"></span></li>
-    <li>Postal Code: <span id="postal_code"></span></li>
-    <li>Country: <span id="country"></span></li>
-    <li>Latitude: <span id="lat"></span></li>
-    <li>Longitude: <span id="lon"></span></li>
-</ul>
-<script>
+  </head>
+  <body>
 
-function saveMarker(lat, lon) {
+    </div>
+    <div class="ui two column grid">
+      <div class="column">
+        <!-- <div class="ui sticky"> -->
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map" height="460px" width="100%"></div>
+    <div id="form" class="popup">
+      <table>
+      <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
+      <tr><td>Type:</td> <td><select id='type'> +
+                 <option value='Fruit' SELECTED>Fruit</option>
+                 <option value='Vegetable'>Vegetable</option>
+                 <option value='Other'>Other</option>
+                 </select> </td></tr>
+                 <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
+      </table>
+    </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAna4GD5g2aOa5JUubrG1HHulRl8LSf7eg&callback=initMap&libraries=places">
+    </script>
+  </div>
 
-	$.ajax({
-		url : '/markers',
-
-		type: 'POST',
-
-		dataType : "json",
-		data: {
-		"marker": {
-		"name": "cherry",
-		"longitude": 0.03,
-		"latitude": 0.0,
-		"address": "test street"
-	}},
-		success:function(data) { alert(JSON.stringify(data)); },
-		error: function(data) { alert(JSON.stringify(data)); }
-	});
-}
-
-var map;
-      var marker;
-      var infowindow;
-      var messagewindow;
-
-
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 49.2827, lng: -123.1207},
-      zoom: 13
-
-    });
+<div class='column'>
+  <div class="ui three item menu">
+    <div class="item">
+      <div class="ui buttons">
+        <button class="ui olive ui button fruit" >Fruit</button>
+        <div class="or"></div>
+        <button class="ui olive ui button veg">Vegetable</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="ui buttons">
+        <button class="ui olive basic button all"> Show All</button>
+      </div>
+    </div>
+    <div class="item">
+      <div class="ui floating dropdown labeled icon button">
+        <i class="filter icon"></i>
+        <span class="search text">Filter Food</span>
+        <div class="menu">
+          <div class="ui icon search input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Search tags...">
+          </div>
+          <div class="divider"></div>
+          <div class="header">
+            <i class="tags icon"></i>
+            Available Options
+          </div>
+          <div class="scrolling menu">
+            <div class="item" data-value="Tomato">
+              <div class="ui red empty circular label"></div>
+              Tomato
+            </div>
+            <div class="item" data-value="Lettuce">
+              <div class="ui blue empty circular label"></div>
+              Lettuce
+            </div>
+            <div class="item" data-value="Grapes">
+              <div class="ui purple empty circular label"></div>
+              Grape
+            </div>
+            <div class="item" data-value="Carrots">
+              <div class="ui orange empty circular label"></div>
+            Carrot
+            </div>
+            <div class="item" data-value="Lemons">
+              <div class="ui yellow empty circular label"></div>
+              Lemon
+            </div>
+            <div class="item" data-value="Strawberries">
+              <div class="ui pink empty circular label"></div>
+            Strawberry
+            </div>
+            <div class="item" data-value="Apples">
+              <div class="ui green empty circular label"></div>
+              Apple
+            </div>
+            <div class="item" data-value="All">
+              <div class="ui empty circular label"></div>
+              All
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-    var input = document.getElementById('searchInput');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-    // auto complete area
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo('bounds', map);
+        <div class="ui centered link cards">
 
-    var infowindow = new google.maps.InfoWindow();
-    var marker = new google.maps.Marker({
-        map: map,
-        animation:google.maps.Animation.Drop,
-        anchorPoint: new google.maps.Point(0, -29)
-    });
+          <% @marker.each do | marker | %>
+          <div class="card" id= <%= marker.category %>>
+            <div class="image">
+              <% if marker.name == "Lettuce" %>
+              <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
+              <% end %>
 
-    autocomplete.addListener('place_changed', function() {
-        infowindow.close();
-        marker.setVisible(false);
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-            window.alert("Your location can not be found");
-            return;
-        }
+              <% if marker.name == "Tomato"  || marker.name == "tomato" %>
+                  <img src="  https://cdn.shopify.com/s/files/1/0790/5353/files/lemon_978d4dcc-8bc7-488c-8914-4e351748ddb5.png?15897903740619616183">
+                  <% end %>
 
-        // If the place has results, then present it on a map.
-        if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-        } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(19);
-        }
-        marker.setIcon(({
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(35, 35)
-        }));
-        marker.setPosition(place.geometry.location);
-        marker.setVisible(true);
+                <% if marker.name == "Strawberries" || marker.name == "berry" || marker.name == "strawberry" %>
+                <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/berry.png?10987933923783252097">
+                <% end %>
 
-        var address = '';
-        if (place.address_components) {
-            address = [
-              (place.address_components[0] && place.address_components[0].short_name || ''),
-              (place.address_components[1] && place.address_components[1].short_name || ''),
-              (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-        }
+                  <% if marker.name == "Apples" || marker.name == "apple" %>
+                  <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/Untitled-2.png?14227909331024637198">
+                  <% end %>
 
-        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-        infowindow.open(map, marker);
+                    <% if marker.name == "Carrots" %>
+                    <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/carrot.png?14706481068821637579">
+                    <% end %>
 
-        //Location details
-        for (var i = 0; i < place.address_components.length; i++) {
-            if(place.address_components[i].types[0] == 'postal_code'){
-                document.getElementById('postal_code').innerHTML = place.address_components[i].long_name;
-            }
-            if(place.address_components[i].types[0] == 'country'){
-                document.getElementById('country').innerHTML = place.address_components[i].long_name;
-            }
-        }
-        document.getElementById('location').innerHTML = place.formatted_address;
-        document.getElementById('lat').innerHTML = place.geometry.location.lat();
-        document.getElementById('lon').innerHTML = place.geometry.location.lng();
+                    <% if marker.name == "Cherries" || marker.name == "cherry" %>
+                    <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/cherry.png?15324602097155618717">
+                <% end %>
 
-        infowindow = new google.maps.InfoWindow({
-       content: document.getElementById('form')
-     })
-
-     messagewindow = new google.maps.InfoWindow({
-       content: document.getElementById('message')
-     });
-
-        google.maps.event.addListener(map, 'click', function(event) {
-              marker = new google.maps.Marker({
-                position: event.latLng,
-                map: map
-              });
+                <% if marker.name == "Grapes" || marker.name == "Grape" %>
+                <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/grape.png?15928860166532810551">
+            <% end %>
+              </div>
+            <div class="content">
+              <div class="header"><%= marker.name %> </div>
+              <div class="meta">
+                <a>198 41st, Vancouver</a>
+              </div>
+              <div class="description">
+              description description fruit and vegetables foraging description
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                <%= marker.category %>
+              </span>
+              <span>
+                <i class="heart icon"></i>
+                <%= rand(5..100) %> Friends
+              </span>
+            </div>
+          </div>
+          <% end %>
 
 
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map, marker);
-              });
-          });
-    });
-
-}
 
 
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap" async defer></script>
-</body> -->
+
+      <div class="card" id="Veg">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/carrot.png?14706481068821637579">
+        </div>
+        <div class="content">
+          <div class="header">Carrots</div>
+          <div class="meta">
+            <a>198 41st, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Vegetable
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card" id="Fruit">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/grape.png?15928860166532810551">
+        </div>
+        <div class="content">
+          <div class="header">Grapes</div>
+          <div class="meta">
+            <a>6th & Gore, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+
+      <div class="card" id="Fruit">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/cherry.png?15324602097155618717">
+        </div>
+        <div class="content">
+          <div class="header">Cherries</div>
+          <div class="meta">
+            <a>East 5th & Victoria, Vancouver</a>
+          </div>
+          <div class="description">
+          description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card" id="Veg">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
+        </div>
+        <div class="content">
+          <div class="header">Lettuce</div>
+          <div class="meta">
+            <a>2949 Prince Edward, Vancouver</a>
+          </div>
+          <div class="description">
+            description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Vegetable
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card" id="Fruit">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/berry.png?10987933923783252097">
+        </div>
+        <div class="content">
+          <div class="header">Strawberries</div>
+          <div class="meta">
+            <span class="date">Victoria Park, East Van</span>
+          </div>
+          <div class="description">
+            description description fruit and vegetables foraging description
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            35 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card" id="Fruit">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lemon.png?8813038794088928612">
+        </div>
+        <div class="content">
+          <div class="header">Lemons</div>
+          <div class="meta">
+            <a>54 clifford street, Vancouver</a>
+          </div>
+          <div class="description">
+description description fruit and vegetables foraging description           </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            75 Friends
+          </span>
+        </div>
+      </div>
+      <div class="card" id="Fruit">
+        <div class="image">
+          <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/Untitled-2.png?14227909331024637198">
+        </div>
+        <div class="content">
+          <div class="header">Apples</div>
+          <div class="meta">
+            <a>161 West Georgia, Vancouver</a>
+          </div>
+          <div class="description">
+description description fruit and vegetables foraging description            </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Fruit
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            151 Friends
+          </span>
+        </div>
+      </div>
+
+      <div class="card" id="Veg">
+        <div class="image">
+          <img src="    https://cdn.shopify.com/s/files/1/0790/5353/files/lemon_978d4dcc-8bc7-488c-8914-4e351748ddb5.png?15897903740619616183">
+        </div>
+        <div class="content">
+          <div class="header">Tomato</div>
+          <div class="meta">
+            <a>900 East Georgia, Vancouver</a>
+          </div>
+          <div class="description">
+description description fruit and vegetables foraging description            </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            Vegetable
+          </span>
+          <span>
+            <i class="heart icon"></i>
+            100 Friends
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <%= javascript_include_tag "maps" %>
+
+  </body>
+</html>

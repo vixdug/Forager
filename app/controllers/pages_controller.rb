@@ -1,11 +1,14 @@
 class PagesController < ApplicationController
   def home
-  end
+    end
 
   def map
-    puts "pages#map is getting called, whee"
+@marker = Marker.all
   end
 
-  def maptest
-  end
+  def community
+    end
+
+
+
 end
