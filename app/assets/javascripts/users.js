@@ -1,7 +1,7 @@
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
-$('form')
+$('.ui.form.large')
   .form({
     fields: {
       name: {
@@ -47,3 +47,20 @@ $('form')
     }
   })
 ;
+$(function addDescription(){
+  $('.description-box').hide();
+    $('.add-me').on('click', function(event){
+      event.preventDefault();
+      $(this).hide();
+        $('.description-box').show();
+      })
+});
+
+$(function editDescription(){
+  $('.description-box').hide();
+  $('.edit-me').on('click', function(event){
+    event.preventDefault();
+      $(this).hide();
+        $('.description-box').show();
+      })
+})

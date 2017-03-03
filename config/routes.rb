@@ -13,8 +13,10 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
 
-  resources :users,  only: [:create, :show, :update]
 
+  resources :users
+
+  post '/users/:id' => 'users#update'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

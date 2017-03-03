@@ -12,12 +12,12 @@
   <body>
     <div class='ui inverted menu'>
       <div class='item'>
-        <%= link_to 'LOGO', '/' %> 
+        <%= link_to 'LOGO', '/' %>
 
       </div>
       <div class='right menu'>
       <% if current_user %>
-  <strong class="white-text">  Signed in as <%= current_user.name %></strong> | <%= link_to "Logout", '/logout', class:'ui olive item' %>
+  <div class='item'>Signed in as &nbsp; | &nbsp; <%= link_to current_user.name, user_path(id: current_user.id) %> </div>| <%= link_to "Logout", '/logout', class:'item' %>
       <% else %>
         <%= link_to 'Login', '/login', class:'item' %> | <%= link_to 'Signup', '/signup',class:'item' %>
       <% end %>
