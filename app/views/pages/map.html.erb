@@ -134,7 +134,7 @@
                     <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/carrot.png?14706481068821637579">
                     <% end %>
 
-                    <% if marker.name == "Cherries" || marker.name == "cherry" %>
+                    <% if marker.name.upcase == "CHERRIES" || marker.name == "CHERRY" %>
                     <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/cherry.png?15324602097155618717">
                 <% end %>
 
@@ -145,7 +145,7 @@
             <div class="content">
               <div class="header"><%= marker.name %> </div>
               <div class="meta">
-                <a>198 41st, Vancouver</a>
+                <a><%= marker.latitude %> <%= marker.longitude  %> </a>
               </div>
               <div class="description">
               description description foraging description

@@ -7,7 +7,10 @@ class MarkersController < ApplicationController
 
   def create
 
+
+
     @marker = Marker.new(marker_params)
+    @marker.user_id = current_user.id
     if @marker.save
       render :json => @marker
     else
@@ -35,7 +38,7 @@ def index
 
 private
   def marker_params
-    params.require(:marker).permit(:name, :address, :latitude, :longitude, :category)
+    params.require(:marker).permit(:name, :address, :latitude, :longitude, :category, :user_id)
   end
 
 
