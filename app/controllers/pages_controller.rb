@@ -1,5 +1,9 @@
+require 'date'
+
 class PagesController < ApplicationController
+
   def home
+    @date = Date.today
     end
 
   def map
@@ -8,7 +12,5 @@ class PagesController < ApplicationController
 
   def community
     end
-
-
 
 end

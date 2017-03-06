@@ -6,19 +6,19 @@
 
 (function($) {
 
-	skel.breakpoints({
-		xlarge:		'(max-width: 1680px)',
-		large:		'(max-width: 1280px)',
-		medium:		'(max-width: 980px)',
-		small:		'(max-width: 736px)',
-		xsmall:		'(max-width: 480px)',
-		xxsmall:	'(max-width: 360px)'
-	});
+	// skel.breakpoints({
+	// 	xlarge:		'(max-width: 1680px)',
+	// 	large:		'(max-width: 1280px)',
+	// 	medium:		'(max-width: 980px)',
+	// 	small:		'(max-width: 736px)',
+	// 	xsmall:		'(max-width: 480px)',
+	// 	xxsmall:	'(max-width: 360px)'
+	// });
 
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body'),
+			$body = $('#home-body'),
 			$wrapper = $('#wrapper'),
 			$header = $('#header'),
 			$footer = $('#footer'),
@@ -27,11 +27,12 @@
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
-
 			$window.on('load', function() {
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
+
+
 			});
 
 		// Fix: Placeholder polyfill.
@@ -90,7 +91,7 @@
 							if (locked || (typeof initial != 'undefined' && initial === true)) {
 
 								// Mark as switching.
-									$body.addClass('is-switching');
+									$body.addClass('is-switching')
 
 								// Mark as visible.
 									$body.addClass('is-article-visible');
@@ -178,7 +179,7 @@
 
 									// Show main, article.
 										$main.show();
-										$article.show();
+										$article.show()
 
 									// Activate article.
 										setTimeout(function() {
@@ -301,6 +302,7 @@
 						$('<div class="close">Close</div>')
 							.appendTo($this)
 							.on('click', function() {
+								window.location.reload()
 								location.hash = '';
 							});
 
@@ -313,6 +315,7 @@
 
 			// Events.
 				$body.on('click', function(event) {
+					window.location.reload()
 
 					// Article visible? Hide.
 						if ($body.hasClass('is-article-visible'))
@@ -363,7 +366,8 @@
 
 							// Show article.
 								$main._show(location.hash.substr(1));
-
+								debugger
+								window.location.reload(true)
 						}
 
 				});

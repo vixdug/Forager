@@ -31,9 +31,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'hirb', '0.7.3'
-# Use semantic for Sass Framework + jquery 
+# Use semantic for Sass Framework + jquery
 gem 'semantic-ui-sass', '2.2.1.1'
 gem 'paperclip', '~> 5.0.0'
+gem 'acts_as_votable', '~> 0.10.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

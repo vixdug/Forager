@@ -5,8 +5,14 @@
 
   </head>
   <body>
+    <!-- <div class="ui page dimmer">
+      <div class="content">
+        <div class="center"></div>
+          <h1>Please Log In To See Map</h1>
+        <div class="ui small button">Login</div>
+      </div>
+    </div> -->
 
-    </div>
     <div class="ui two column grid">
       <div class="column">
         <!-- <div class="ui sticky"> -->
@@ -30,7 +36,7 @@
  </script>
   </div>
 
-<div class='column'>
+<div class='column' id="map-scroll">
   <div class="ui three item menu">
     <div class="item">
       <div class="ui buttons">
@@ -97,16 +103,16 @@
     </div>
   </div>
 
-
         <div class="ui centered link cards">
 
           <% @marker.each do | marker | %>
+
           <% if marker.name.upcase == "LETTUCE" %>
-          <div class="teal card" id= <%= marker.category %>>
+          <div class="teal card" name= <%= marker.id %> id= <%= marker.category %> >
             <% else %>
-              <div class="card" id= <%= marker.category %>>
+              <div class="card" name= <%= marker.id %> id= <%= marker.category %>>
                 <% end %>
-    
+
             <div class="image">
               <% if marker.name.upcase == "LETTUCE" %>
               <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
@@ -150,15 +156,14 @@
                 <%= marker.category %>
               </span>
               <span>
+                <%= link_to like_marker_path(marker), method: :put do %>
                 <i class="heart icon"></i>
-                <%= rand(5..100) %> Friends
+              <%= marker.get_upvotes.size %> Friends
+                <%  end %>
               </span>
             </div>
           </div>
           <% end %>
-
-
-
 
 
       <div class="card" id="Vegetable">
@@ -195,6 +200,9 @@
           </div>
           <div class="description">
           description description fruit and vegetables foraging description
+
+
+
           </div>
         </div>
         <div class="extra content">
@@ -203,7 +211,8 @@
           </span>
           <span>
             <i class="heart icon"></i>
-            75 Friends
+            100 Friends
+
           </span>
         </div>
       </div>

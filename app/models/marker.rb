@@ -1,2 +1,4 @@
 class Marker < ActiveRecord::Base
-end 
+acts_as_votable
+  # default_scope order('id DESC')
+end

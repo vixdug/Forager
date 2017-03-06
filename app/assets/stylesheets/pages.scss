@@ -29,7 +29,11 @@
 
       .column {
         height: 100vh;
+      }
+
+      #map-scroll {
         overflow-y: scroll;
+
       }
 
       // .column.right {

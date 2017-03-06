@@ -1,3 +1,6 @@
+
+
+
 $('.ui.sticky')
   .sticky({
     context: '#map'
@@ -15,6 +18,8 @@ $('.ui.dropdown').dropdown({
     filterByType(val)
     }
     }})
+
+
 
 
 
@@ -54,6 +59,9 @@ $('.fruit').state({
     .end()
   }})
 
+  $('.ui.page.dimmer')
+    .dimmer('show')
+  ;
 
     $('.button.all').state({
       onChange: function() {
@@ -61,18 +69,18 @@ $('.fruit').state({
         console.log("all");
       }})
 
-      // var previous = null;
-      // var current = null;
-      //     setInterval(function() {
-      //         $.getJSON("/markers.json", function(json) {
-      //             current = JSON.stringify(json);
-      //             if (previous && current && previous !== current) {
-      //                 console.log('refresh');
-      //                 location.reload();
-      //             }
-      //             previous = current;
-      //         });
-      //     }, 2000);
+      var previous = null;
+      var current = null;
+          setInterval(function() {
+              $.getJSON("/markers.json", function(json) {
+                  current = JSON.stringify(json);
+                  if (previous && current && previous !== current) {
+                      console.log('refresh');
+                      location.reload();
+                  }
+                  previous = current;
+              });
+          }, 2000);
 
 
 
@@ -122,6 +130,7 @@ var formattedAddress;
                 });
 
                 var markers = [];
+                console.log("markers in da house", markers);
 
                 searchBox.addListener('places_changed', function() {
                   var places = searchBox.getPlaces();
@@ -183,9 +192,35 @@ var formattedAddress;
                                   infowindow.setContent(document.getElementById('form'))
                                    infowindow.open( map, markerYo );
                                   });
-                                  infowindow.setContent("shoot")
-
                        })
+
+
+                       // markers are stored in an array of objects markers.
+                       var foundID = findID()
+
+                    //    function getID(id){
+                    //    var cardClick = document.getElementsByName(id)[0];
+                    //    google.maps.event.addDomListener(cardClick, 'click', function(){
+                    //       console.log("testing listener");
+                    //      console.log(id);
+                    //    })
+                    //  }
+
+                     function bounceMarker(marker){
+                       marker.setAnimation(google.maps.Animation.BOUNCE)
+                       console.log("bouncing");
+                     setTimeout(function(){ marker.setAnimation(null); }, 750);
+                   }
+
+                   function findMarker(staticID){
+                     for (var i = 0, length = markers.length; i < length; i++) {
+                       var currentMarkerID = markers[i].id
+                       if (currentMarkerID == staticID) {
+                         marker = markers[i]
+                         bounceMarker(marker)
+                       }
+                     }
+                   }
 
 
 
@@ -201,9 +236,14 @@ var formattedAddress;
 				position: latLng,
         map: map,
 				title: data.name,
-        category: data.category
+        category: data.category,
+        id: data.id
 			});
       markers.push(marker);
+
+
+
+
 
 
 			// Creating a closure to retain the correct data, notice how I pass the current data in the loop into the closure (marker, data)
@@ -221,6 +261,12 @@ var formattedAddress;
 
 		}
 
+    function findID() {
+      $('.card').on('click', function (e) {
+      var staticID = $(this).attr("name")
+      findMarker(staticID);
+      })
+    }
 
 
     saveData = function(){

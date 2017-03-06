@@ -17,7 +17,19 @@ class MarkersController < ApplicationController
 
 
 def index
-   @marker = Marker.all
+   @marker = Marker.all.order(created_at: :desc)
+ end
+
+ def upvote
+  @marker = Marker.find(params[:id])
+  @marker.upvote_from current_user
+  redirect_to map_path
+ end
+
+ def downvote
+   @marker = Marker.find params[:id]
+   @marker.downvote_from current_user
+   redirect_to map_path
  end
 
 
