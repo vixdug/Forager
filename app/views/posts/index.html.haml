@@ -1,14 +1,21 @@
-- @post.each do |post|
-  %p= link_to post.title, post
-  %p= post.content
-  %p
-  Published
-  = time_ago_in_words(post.created_at)
-  ago
-  by
-  = post.user.name
+.ui.text.container
+  .ui.dividing.header
+    %h1 COMMUNITY POSTS
+
+
+  - @post.each do |post|
+    %h3= link_to post.title, post
+    %p
+    Published
+    = time_ago_in_words(post.created_at)
+    ago
+    by
+    %a= post.user.name
 
 
 
 
-= link_to "New Post", new_post_path
+  %br/
+  %br/
+
+  = link_to "New Post", new_post_path

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get "/map", to: 'pages#map'
   get "/community", to: 'pages#community'
-
+  get "/contact", to: 'pages#contact'
   # resources :pages, only: :create, as: "map"
 
   # post "/markers", to: 'pages#map'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
 
   resources :posts do
-    resources :comments 
+    resources :comments
   end
 
 
@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

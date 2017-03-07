@@ -16,6 +16,9 @@ class PagesController < ApplicationController
   def community
     end
 
+  def contact
+  end 
+
 
 
 
