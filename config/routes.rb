@@ -12,12 +12,16 @@ Rails.application.routes.draw do
       put "like" => "markers#upvote"
       put "unlike" => "markers#downvote"
     end
-  end 
+  end
 
   # resources :markers
   # get "markers/index"
 
   get '/signup' => 'users#new'
+
+  resources :posts do
+    resources :comments 
+  end
 
 
   resources :users

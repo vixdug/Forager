@@ -35,6 +35,8 @@ gem 'hirb', '0.7.3'
 gem 'semantic-ui-sass', '2.2.1.1'
 gem 'paperclip', '~> 5.0.0'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'haml', '~> 4.0.5'
+gem 'simple_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
