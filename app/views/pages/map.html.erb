@@ -107,8 +107,8 @@
 
           <% @marker.each do | marker | %>
 
-          <% if marker.name.upcase == "LETTUCE" %>
-          <div class="teal card" name= <%= marker.id %> id= <%= marker.category %> >
+          <% if marker.name.upcase == "APPLES" %>
+          <div class="green card" name= <%= marker.id %> id= <%= marker.category %> >
             <% else %>
               <div class="card" name= <%= marker.id %> id= <%= marker.category %>>
                 <% end %>
@@ -145,7 +145,7 @@
             <div class="content">
               <div class="header"><%= marker.name %> </div>
               <div class="meta">
-                <a><%= marker.address %> </a>
+                <a><%= marker.address  %> </a>
               </div>
               <div class="description">
               description description foraging description
