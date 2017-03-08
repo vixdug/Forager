@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @description = @user.description
     @default_url = 'http://coastalhomes.ie/wp-content/uploads/2016/01/no.jpg'
 
-    @marker = Marker.find_by(params[@user.id])
+    @marker = Marker.where(user_id: @user.id)
   end
 
   def create

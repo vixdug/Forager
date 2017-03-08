@@ -18,7 +18,6 @@ class MarkersController < ApplicationController
     end
   end
 
-
 def index
    @marker = Marker.all.order(created_at: :desc)
  end
@@ -35,6 +34,12 @@ def index
    redirect_to map_path
  end
 
+ def destroy
+    @marker = Marker.find(params[:id])
+    @marker.destroy
+    redirect_to user_path(current_user)
+  end
+  
 
 private
   def marker_params

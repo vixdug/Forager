@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # resources :pages, only: :create, as: "map"
 
   # post "/markers", to: 'pages#map'
-  resources :markers, only: [:create, :index] do
+  resources :markers, only: [:create, :index, :destroy] do
     member do
       put "like" => "markers#upvote"
       put "unlike" => "markers#downvote"

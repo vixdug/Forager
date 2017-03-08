@@ -107,12 +107,19 @@
 
           <% @marker.each do | marker | %>
 
-          <% if marker.name.upcase == "APPLES" %>
-          <div class="green card" name= <%= marker.id %> id= <%= marker.category %> >
-            <% else %>
-              <div class="card" name= <%= marker.id %> id= <%= marker.category %>>
-                <% end %>
-
+          <% if marker.name.upcase == 'LETTUCE' %>
+            <div class='teal card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'APPLES' %>
+            <div class='green card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'TOMATO' %>
+            <div class='red card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'CARROTS' %>
+            <div class='orange card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'GRAPES' %>
+            <div class='purple card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% else %>
+            <div class='card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% end %>
             <div class="image">
               <% if marker.name.upcase == "LETTUCE" %>
               <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
