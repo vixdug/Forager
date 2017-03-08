@@ -2,17 +2,55 @@
 //   margin-top: 130px;
 // }
 
+
+.center.profile {
+  height: 200px;
+  width: 100%
+}
+
+.edit-me , .add-me {
+  margin-top: 5px
+}
+h1.header.user {
+  padding-top: 50px;
+}
+h5.meta.user{
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+.login-footer {
+  padding-left: 5px;
+}
+
+.three.wide.column.photo, .thirteen.wide.column {
+  height: 200px;
+}
+
+.ui.button.upload-photo{
+  letter-spacing: 1px;
+  margin-left: 10px;
+}
+.ui.cards.profile{
+  padding-left: 6%;
+}
+.ui.huge.message.page.grid {
+    padding-left: 30px;
+    padding-right: 5px;
+}
+
 .ui.inverted.menu{
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 0px;
 }
-
-.login-footer {
-  padding-left: 5px;
+.user {
+  color: black;
 }
 
-.ui.small.circular.image{
-  margin-top: -10%;
-  padding-left: 10px;
-}
+
+
+//
+// .ui.small.circular.image{
+//   margin-top: -10%;
+//   padding-left: 10px;
+// }

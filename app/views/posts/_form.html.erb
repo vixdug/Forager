@@ -1,5 +1,30 @@
-<%= simple_form_for @post do |f| %>
+
+
+<!-- <%= simple_form_for @post do |f| %>
   <%= f.input :title %>
   <%= f.input :content %>
   <%= f.submit nil, class:"ui olive button"   %>
-<% end %>
+<% end %> -->
+
+
+
+  <div class="ui main text container">
+    <div class='comment box'>
+
+      <%= simple_form_for @post do |f| %>
+      <div class='field'>
+
+        <%= f.text_field :title %>
+
+      </div>
+      <div class='field'>
+
+        <%= f.text_area :content %>
+
+      </div>
+
+        <%= f.submit nil, class:"ui olive button"   %> <%= link_to 'Cancel', posts_path, class:'mini ui button cancel' %>
+
+      <% end %>
+    </div>
+  </div>
