@@ -8,23 +8,27 @@
 
 
 
+
+<div class="ui form center alligned">
+
   <div class="ui main text container">
-    <div class='comment box'>
+  
 
       <%= simple_form_for @post do |f| %>
       <div class='field'>
 
-        <%= f.text_field :title %>
+        <%= f.text_field :title, placeholder: "Title Of Post" %>
 
       </div>
       <div class='field'>
 
-        <%= f.text_area :content %>
+        <%= f.text_area :content, placeholder: "Ask question here!" %>
 
       </div>
 
-        <%= f.submit nil, class:"ui olive button"   %> <%= link_to 'Cancel', posts_path, class:'mini ui button cancel' %>
+        <%= f.submit nil, class:"ui olive button"   %> <%= link_to 'Cancel', posts_path, class:'ui button cancel' %>
 
       <% end %>
     </div>
   </div>
+</div>

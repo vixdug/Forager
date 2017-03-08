@@ -1,0 +1,23 @@
+<div class="ui text container">
+  <div id="post_content"></div>
+  <h3 class="dark-grey">
+    <br>
+    <%= @post.title %>
+  </h3>
+  <div class="ui dividing header"></div>
+  <p>
+    <%= @post.content %>
+  </p>
+  <div id="comments">
+    <p>
+    </p>
+    <h3 class="ui dividing header"><%= @post.comments.count %>
+Comments</h3>
+    <%= render @post.comments %>
+    <p>Reply to thread</p>
+    <%= render "comments/form" %>
+  </div>
+
+  <%= link_to "Edit", edit_post_path(@post), class:"ui small button" %>
+  <%= link_to "Delete", post_path(@post),class:"ui small button",  method: :delete, data: { confirm: "are you sure you want to delete this post?"} %>
+</div>

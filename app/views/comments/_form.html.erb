@@ -1,6 +1,5 @@
 <div class="field">
 <%= simple_form_for([@post, @post.comments.build]) do |f| %>
-  <%= f.label 'Add Your Comment:' %>
   <%= f.input_field :comment %>
   <br>
   <%= f.submit nil, class:"ui olive button" %>

@@ -1,0 +1,26 @@
+<div class="comment">
+  <div class="ui comments">
+    <div class="comment">
+      <a class="avatar">
+        <%= image_tag comment.user.avatar %>
+      </a>
+      <div class="content">
+        <a class="author">
+          <%= comment.user.name %>
+        </a>
+        <div class="metadata">
+          <span class="date"></span>
+          <%= time_ago_in_words(comment.created_at) %>
+          ago
+        </div>
+        <div class="text">
+          <%= comment.comment %>
+        </div>
+        <div class="actions">
+          <%= link_to "Delete", [comment.post, comment], method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>

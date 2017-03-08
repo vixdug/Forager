@@ -1,49 +1,143 @@
-<div class="ui page grid">
-      <div class="row">
-          <div class="column">
-              <div class="ui huge message page grid center alligned">
-                  <h1 class="sub-heading">  Welcome, <%= current_user.name %>!</h1>
-                  <div class=' '>
-                    <p>Member since: <%= current_user.created_at.strftime("%d %b. %Y") %></p>
-                  </div>
-              </div>
-              <!-- <%= image_tag gravatar_url(current_user.email, 256), alt: "", class:'ui small circular image' %> -->
-              <% if current_user.avatar = nil %>
-              <%= form_tag user_path(current_user), multipart: true do %>
-                <%= file_field_tag 'user[avatar]', as: :file %>
-                <%= submit_tag 'Add image', class:'ui button'%>
-              <% end %>
-              <% else %>
-                <%= image_tag current_user.avatar, class:'ui small circular image'%>
-              <% end %>
-              <!-- <%= image_tag @user.avatar.url(:thumb) %> -->
-              <div class='row'>
-                <div class="ui form center alligned">
-                  <div class="field">
-                    <label class='ui medium heading'>About me</label>
-                      <% if current_user.description == nil %>
-                        <%= link_to 'Add About Me', user_path, data:{no_turbolinks: 'true'},class:'ui button add-me' %>
-                          <div class='description-box'>
-                            <%= form_tag user_path(current_user), class:'ui form' do %>
-                              <%= text_area_tag 'user[description]', nil, placeholder: 'Tell us about yourself!'%>
-                              <%= submit_tag 'Update', class:'ui button add'%> <%= link_to 'Cancel', user_path, class:' ui button cancel' %>
-                            <% end %>
-                          </div>
-                          <% else %>
-                          <%= current_user.description %>
-                            </br>
-                            <%= link_to 'Edit About Me', user_path, class:'ui button edit-me' %>
-                              <div class='description-box'>
-                                <%= form_tag user_path(current_user), class:'ui form' do %>
-                                  <%= text_area_tag 'user[description]', nil, placeholder: 'Tell us about yourself!'%>
-                                  <%= submit_tag 'Update', class:'ui button update'%> <%= link_to 'Cancel', user_path, class:' ui button cancel' %>
-                                <% end %>
-                              </div>
-                      <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="ui main text container">
+  <div class="ui huge message page grid">
+    <div class='ui center profile'>
+    <% if gravatar?(current_user)%>
+    <div class='ui two column grid'>
+      <div class='six wide column photo'>
+        <%= image_tag gravatar_url(current_user.email, 256), alt: "", class:'ui small circular image' %>
+        <%= link_to 'Upload Photo', user_path, data:{no_turbolinks: 'true'},class:'mini ui button upload-photo' %>
+        <div class='user-image'>
+          <%= form_tag user_path(current_user), method: :put, multipart: true do %>
+          <%= file_field_tag 'user[avatar]', as: :file %> </br>
+          <%= submit_tag 'Save image', class:'mini ui button'%> <%= link_to 'Cancel', user_path, class:'mini ui button cancel' %>
+          <% end %>
+        </div>
       </div>
+      <div class='ten wide column info'>
+        <h1 class="header user">
+          Welcome, <%= current_user.name %>!
+        </h1>
+        <h5 class='meta user'>
+          Member since: <%= current_user.created_at.strftime("%d %b. %Y") %>
+        </h5>
+      </div>
+    </div>
+    <% elsif !current_user.avatar? %>
+    <div class='ui two column grid'>
+      <div class='six wide column photo'>
+        <%= image_tag current_user.avatar, class:'ui small circular image'%>
+        <%= link_to 'Upload Photo', user_path, data:{no_turbolinks: 'true'},class:'mini ui button upload-photo' %>
+        <div class='user-image'>
+          <%= form_tag user_path(current_user), method: :put, multipart: true do %>
+          <%= file_field_tag 'user[avatar]', as: :file %> </br>
+          <%= submit_tag 'Save image', class:'mini ui button'%> <%= link_to 'Cancel', user_path, class:'mini ui button cancel' %>
+          <% end %>
+        </div>
+      </div>
+      <div class='ten wide column info'>
+        <h1 class="header user">
+          Welcome, <%= current_user.name %>!
+        </h1>
+        <h5 class='meta user'>
+          Member since: <%= current_user.created_at.strftime("%d %b. %Y") %>
+        </h5>
+      </div>
+    </div>
+    <% else %>
+    <div class='ui two column grid'>
+      <div class='six wide column photo'>
+        <%= image_tag current_user.avatar, class:'ui small circular image'%>
+        <%= link_to 'Upload Photo', user_path, data:{no_turbolinks: 'true'},class:'mini ui button upload-photo' %>
+        <div class='user-image'>
+          <%= form_tag user_path(current_user), method: :put, multipart: true do %>
+          <%= file_field_tag 'user[avatar]', as: :file %> </br>
+          <%= submit_tag 'Save image', class:'mini ui button'%> <%= link_to 'Cancel', user_path, class:'mini ui button cancel' %>
+          <% end %>
+        </div>
+      </div>
+      <div class='ten wide column info'>
+        <h1 class="header user">
+          Welcome, <%= current_user.name %>!
+        </h1>
+        <h5 class='meta user'>
+          Member since: <%= current_user.created_at.strftime("%d %b. %Y") %>
+        </h5>
+      </div>
+    </div>
+    <% end %>
+    </br>
+  </div>
+</div>
+<div class='row'>
+  <div class="ui form center alligned">
+    <div class="field">
+      <h4 class='ui horizontal divider header'>
+      <i class="child icon"></i>
+      About me
+      </h4>
+        <% if current_user.description == nil %>
+        <%= link_to 'Add About Me', user_path, data:{no_turbolinks: 'true'},class:'ui button add-me' %>
+          <div class='description-box'>
+          <%= form_tag user_path(current_user), class:'ui form' do %>
+          <%= text_area_tag 'user[description]', nil, placeholder: 'Tell us about yourself!'%>
+          <%= submit_tag 'Update', class:'mini ui button add'%> <%= link_to 'Cancel', user_path, class:'mini ui button cancel' %>
+          <% end %>
+          </div>
+        <% else %>
+        <div class='description'>
+          <%= current_user.description %>
+        </div>
+        </br>
+        <%= link_to 'Edit About Me', user_path, class:'mini ui button edit-me' %>
+        <div class='description-box'>
+          <%= form_tag user_path(current_user), class:'ui form' do %>
+            <%= text_area_tag 'user[description]', nil, placeholder: 'Tell us about yourself!'%>
+            <%= submit_tag 'Update', class:'mini ui button update'%> <%= link_to 'Cancel', user_path, class:'mini ui button cancel' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="field">
+  <%= @marker %>
+  <h4 class='ui horizontal divider header'>
+  <i class="tags icon"></i>
+  My posts
+  </h4>
+  <div class="ui cards profile">
+  <div class="card">
+    <div class="content">
+      <div class="header">
+        Ex. Carrot
+      </div>
+      <div class="meta">
+        Location
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+        <div class="ui basic red button">Delete</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="content">
+      <div class="header">
+        Ex. Carrot
+      </div>
+      <div class="meta">
+        Location
+      </div>
+      <div class="description">
+        Elliot requested permission to view your contact details
+      </div>
+    </div>
+    <div class="extra content">
+        <div class="ui basic red button">Delete</div>
+    </div>
+  </div>
+</div>
+</div>
 <%= javascript_include_tag 'users' %>

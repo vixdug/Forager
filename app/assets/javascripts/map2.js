@@ -1,5 +1,5 @@
 
-
+$('.ui.page.dimmer').dimmer('show');
 
 $('.ui.sticky')
   .sticky({
@@ -251,7 +251,7 @@ var formattedAddress;
 
 				// Attaching a click event to the current marker
 				google.maps.event.addListener(marker, "click", function() {
-					infowindow.setContent("<div>"+ "Name: "+data.name+"<br>"+"Category: "+data.category+"<br>"+"Location: "+ marker.position);
+					infowindow.setContent("<div>"+ "Name: "+data.name+"<br>"+"Category: "+data.category+"<br>"+"Location: "+ data.address);
 					infowindow.open(map, marker);
 				});
         console.log("marker", marker);
@@ -279,12 +279,12 @@ var formattedAddress;
       var geocoder = new google.maps.Geocoder;
       geocoder.geocode({'location': latlng},
       function(results, status) {
-      formattedAddress = results[1].formatted_address
-        console.log(results[1].formatted_address);
+      formattedAddress = results[0].formatted_address
+        console.log(results[0].formatted_address);
         console.log("latlng"+ latlng);
         infowindow.setContent("<div>"+ "Name: "+name+"<br>"+"Category: "+category+"<br>"+"Location: "+formattedAddress)
         infowindow.open(map, markerYo)
-      })
+
 
 
       $.ajax({
@@ -298,14 +298,15 @@ var formattedAddress;
         "category": category,
         "longitude": latlng.lng(),
         "latitude": latlng.lat(),
-        "Address": formattedAddress
+        "address": formattedAddress
+
         //TODO: add formatted address
 
       }},
         success:function(data) { alert(JSON.stringify(data)); },
         error: function(data) { alert(JSON.stringify(data)); }
       })
-
+})
     }
 
 	}

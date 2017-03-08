@@ -47,6 +47,7 @@ $('.ui.form.large')
     }
   })
 ;
+$(document).ready(function(){
 $(function addDescription(){
   $('.description-box').hide();
     $('.add-me').on('click', function(event){
@@ -63,4 +64,15 @@ $(function editDescription(){
       $(this).hide();
         $('.description-box').show();
       })
+});
+
+$(function uploadPhoto(){
+  $('.user-image').hide();
+  $('.upload-photo').on('click', function(event){
+    event.preventDefault();
+      $(this).hide();
+      $('.user-image').show();
+  })
+});
+
 })
