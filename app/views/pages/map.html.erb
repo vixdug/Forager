@@ -69,9 +69,9 @@
               <div class="ui red empty circular label"></div>
               Tomato
             </div>
-            <div class="item" data-value="Lettuce">
+            <div class="item" data-value="Kale">
               <div class="ui blue empty circular label"></div>
-              Lettuce
+              Kale
             </div>
             <div class="item" data-value="Grapes">
               <div class="ui purple empty circular label"></div>
@@ -107,7 +107,7 @@
 
           <% @marker.each do | marker | %>
 
-          <% if marker.name.upcase == 'LETTUCE' %>
+          <% if marker.name.upcase == 'KALE' %>
             <div class='teal card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'APPLES' %>
             <div class='green card' name= <%= marker.id %> id= <%= marker.category %> >
@@ -115,6 +115,8 @@
             <div class='red card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'CARROTS' %>
             <div class='orange card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'FIGS' %>
+            <div class='pink card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'MUSHROOMS' %>
             <div class='brown card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'GRAPES' %>
@@ -123,7 +125,7 @@
             <div class='card' name= <%= marker.id %> id= <%= marker.category %> >
           <% end %>
             <div class="image">
-              <% if marker.name.upcase == "LETTUCE" %>
+              <% if marker.name.upcase == "KALE" %>
               <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
               <% end %>
 
@@ -265,7 +267,7 @@
           <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lettuce.png?7058430645863851559">
         </div>
         <div class="content">
-          <div class="header">Lettuce</div>
+          <div class="header">Kale</div>
           <div class="meta">
             <a>2949 Prince Edward, Vancouver</a>
           </div>

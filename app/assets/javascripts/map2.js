@@ -297,11 +297,10 @@ var formattedAddress;
         "latitude": latlng.lat(),
         "address": formattedAddress
 
-        //TODO: add formatted address
 
       }},
-        success:function(data) { alert(JSON.stringify(data)); },
-        error: function(data) { alert(JSON.stringify(data)); }
+        success:function(data) {); },
+        error: function(data) { ); }
       })
 })
     }
