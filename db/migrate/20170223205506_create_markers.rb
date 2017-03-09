@@ -6,7 +6,7 @@ class CreateMarkers < ActiveRecord::Migration[5.0]
       t.float  :latitude
       t.float  :longitude
       t.string :type
-      t.timestamps 
+      t.timestamps
     end
   end
 end
