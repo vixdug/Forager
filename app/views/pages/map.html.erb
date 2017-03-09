@@ -115,6 +115,8 @@
             <div class='red card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'CARROTS' %>
             <div class='orange card' name= <%= marker.id %> id= <%= marker.category %> >
+          <% elsif marker.name.upcase == 'MUSHROOMS' %>
+            <div class='brown card' name= <%= marker.id %> id= <%= marker.category %> >
           <% elsif marker.name.upcase == 'GRAPES' %>
             <div class='purple card' name= <%= marker.id %> id= <%= marker.category %> >
           <% else %>
@@ -136,6 +138,17 @@
                 <% if marker.name.upcase == "APPLES" %>
                   <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/Untitled-2.png?14227909331024637198">
                   <% end %>
+
+                  <% if marker.name.upcase == "MUSHROOMS" %>
+                    <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/mushroom.png?4743279857740167382">
+                    <% end %>
+
+                    <% if marker.name.upcase == "FIG" %>
+                      <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/lemon_4e6bf37f-78fd-4d02-9a30-ba08c729c09e.png?4743279857740167382">
+                      <% end %>
+
+
+
 
                   <% if marker.name.upcase == "CARROTS" %>
                     <img src="https://cdn.shopify.com/s/files/1/0790/5353/files/carrot.png?14706481068821637579">

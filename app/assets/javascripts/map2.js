@@ -20,9 +20,6 @@ $('.ui.dropdown').dropdown({
     }})
 
 
-
-
-
     // getSelectedTextValue()
 function filterByType(val) {
     $('.header').filter(function(){

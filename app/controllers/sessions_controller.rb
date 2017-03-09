@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       redirect_to map_path
     else
       redirect_to login_path
+      flash[:error]= 'Email or Password is invalid'
     end
   end
 

@@ -16,9 +16,11 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to map_path
     else
+      flash[:notice] = 'Error with signup. Please try again.'
       redirect_to signup_path
     end
-  end
+end
+
 
   def update
       current_user = User.find(params[:id])

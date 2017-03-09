@@ -4,7 +4,8 @@
     <h2 class="dark-grey">COMMUNITY POSTS:</h2>
 
   </div>
-        <%= link_to "New Post", new_post_path, class:"ui fluid inverted olive button float-right" %>
+  <% if current_user %>
+  <%= link_to "New Post", new_post_path, class:"ui fluid inverted olive button float-right" %>
 
   <% @post.each do |post| %>
     <h3>
@@ -19,6 +20,22 @@
       <%= post.user.name %>
     </a>
   <% end %>
+  <% else %>
+  <% @post.each do |post| %>
+    <h3>
+      <%= link_to post.title, post %>
+    </h3>
+    <p></p>
+    Published
+    <%= time_ago_in_words(post.created_at) %>
+    ago
+    by
+    <a>
+      <%= post.user.name %>
+    </a>
+  <% end %>
+
   <br/>
   <br/>
 </div>
+<% end %>
