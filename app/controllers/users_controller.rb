@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @description = @user.description
-    @default_url = 'http://coastalhomes.ie/wp-content/uploads/2016/01/no.jpg'
+    @default_url = 'https://68.media.tumblr.com/2b9981e351c7edd34c937abb5566fb03/tumblr_ob5pgtJ6hD1ut5l79o1_500.jpg'
 
     @marker = Marker.where(user_id: @user.id)
   end
